@@ -1,7 +1,10 @@
+import os.path
+from time import sleep
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 HOST = '0.0.0.0'
-PORT = 8008
+PORT = 8080
+PATH = '/etc/message.txt'
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -10,7 +13,12 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'text/plain')
         self.end_headers()
 
-        message = 'Hello World'
+        message = 'Hello World!'
+
+        if os.path.isfile(PATH):
+            f = open(PATH, "r")
+            message = f.read()
+
         self.wfile.write(bytes(message, 'utf-8'))
 
 
@@ -27,5 +35,6 @@ def run(host, port, server_class=HTTPServer, handler_class=Handler):
 
 
 if __name__ == '__main__':
+    sleep(30)
+    print('Starting server...')
     run(HOST, PORT)
-
