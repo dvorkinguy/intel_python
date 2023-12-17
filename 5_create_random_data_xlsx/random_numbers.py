@@ -1,12 +1,17 @@
+import os
 import random
 from openpyxl import Workbook
 
 # Function to generate a random price between 1 and 300 as a float
+
+
 def generate_random_price():
     return round(random.uniform(1, 300), 2)
 
+
 # List of example company names
-company_names = ["ABC Inc.", "XYZ Corporation", "Tech Solutions Ltd", "Global Innovations", "Alpha Enterprises", "Beta Industries"]
+company_names = ["ABC Inc.", "XYZ Corporation", "Tech Solutions Ltd",
+                 "Global Innovations", "Alpha Enterprises", "Beta Industries"]
 
 # Generate 45 rows with data
 data = []
@@ -38,7 +43,5 @@ filename = "current_dir, random_data_with_companies_and_inventory.xlsx"
 workbook.save(filename)
 
 # Print the absolute path of the saved file
-import os
 absolute_path = os.path.abspath(filename)
 print(f"File saved at: {absolute_path}")
-
